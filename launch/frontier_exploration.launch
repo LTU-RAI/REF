@@ -1,0 +1,68 @@
+<launch>
+
+	<node pkg="exploration" type="vis_next" name="vis_next" output="screen"> </node>
+    <node pkg="exploration" type="exploration_node" name="exploration" output="screen">
+		<param name="xFiltering" value="true" />
+		<param name="yFiltering" value="true" />
+		<param name="zFiltering" value="true" />
+		<param name="publish_the_map" value="false" />
+		<param name="resolution" value="0.4" />
+		<param name="cloud_in" value="/hummingbird/velodyne_points" />
+		
+		<param name="distance" value="10" />  <!-- Frontiers clearing radius -->
+
+		<param name="frame_id" type="string" value="world" />
+
+		
+		<param name="sensor_model/max_range" value="12" />  <!-- maximum range to integrate (speedup exploration!) -->
+
+		<remap from="cloud_in" to="/hummingbird/velodyne_points" /> <!-- data source to integrate (PointCloud2) -->
+
+		<param name="number_of_unknowns" value="10" />
+
+	</node>
+
+    <node pkg="exploration" type="frontier_selection_node" name="frontier_selection" output="screen">
+		<!-- Constants for the weighting functions -->
+        <param name="height_constant" value= "1" />
+		<param name="angle_constant" value= "5" />
+		<param name="distance_constant" value= "5" />
+		<param name="local_range" value= "13" />
+
+        <!-- Resolution of the voxels in rviz -->
+		<param name="resolution" value="0.4" />
+
+        <!-- Field of View angle in flight direction -->
+        <param name="fov_angle" value="40" />
+
+        <param name="frontier_topic" value="frontiers" />
+
+		<param name="sensor_range" value="13" />
+
+		<param name="frame_id" type="string" value="world" />
+
+	</node>
+
+	<!-- <node pkg="exploration" type="exploration_cmd_node" name="exploration_cmd" output="screen">
+
+        <param name="point_cloud_topic" value="/hummingbird/velodyne_points" />
+		<param name="odom_topic" value="/hummingbird/ground_truth/odometry"/>
+		<param name="publish_point_topic" value="/command/point"/>
+        <param name="max_velocity" value="1.5"/>
+        <param name="max_acceleration" value="2.5"/>
+        <param name="resolution" value="0.3"/>
+        <param name="distance_threshold" value="0.5"/>
+        <param name="distanceBeforeSelectingNew" value="20"/>
+        <param name="dt" value="0.5"/>
+        <param name="num_opt_points" value="4"/>
+        <param name="field" value="15"/>
+        <param name="stopTimeGlobalFrontier" value="2.5"/>
+
+	</node> -->
+
+    
+</launch>
+
+
+
+
