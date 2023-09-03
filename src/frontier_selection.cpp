@@ -114,53 +114,6 @@ FrontierSelection::FrontierSelection(ros::NodeHandle private_nh_)
                 
                 angle = head - yaw_angle;
 
-                if (head > -180 && head < -90) {
-
-                        if (yaw_angle > -180 && yaw_angle < -90) {
-                            
-                            angle = angle;
-
-                            if (angle > 180) {
-
-                                angle = angle - 360;
-                            }
-                        } 
-                        
-                        else {
-
-                            angle = angle + 360;
-
-                            if (angle > 180) {
-
-                                angle = angle - 360;
-                            }                            
-
-                        }
-
-                } else if (head > 0) {
-
-                    if (yaw_angle > -180 && yaw_angle < -90) {
-
-                        angle = angle - 360;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-
-                    } else {
-
-                        angle = angle;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-
-                    }
-
-                }
-                
                 //Check if the frontier is in our field of view
                 // if (((angle < fovAngle) && (angle > -fovAngle)) && (distance < 18) && heightDifference < 0.6) {
 
@@ -384,53 +337,6 @@ FrontierSelection::FrontierSelection(ros::NodeHandle private_nh_)
 
             angle = head - yaw_angle;
 
-                if (head > -180 && head < -90) {
-
-                    if (yaw_angle > -180 && yaw_angle < -90) {
-                        
-                        angle = angle;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-                    } 
-                    
-                    else {
-
-                        angle = angle + 360;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }                            
-
-                    }
-
-                } else if (head > 0) {
-
-                    if (yaw_angle > -180 && yaw_angle < -90) {
-
-                        angle = angle - 360;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-
-                    } else {
-
-                        angle = angle;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-
-                    }
-
-                }
-
             score = angle;
 
             if ( (localfrontier.z > 2) || (localfrontier.z < 0.8)) {
@@ -492,53 +398,6 @@ FrontierSelection::FrontierSelection(ros::NodeHandle private_nh_)
                                     (frontierPoint.x() - dronepose.x())) * (180/3.14159));
 
             angle = head - yaw_angle;
-
-                if (head > -180 && head < -90) {
-
-                    if (yaw_angle > -180 && yaw_angle < -90) {
-                        
-                        angle = angle;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-                    } 
-                    
-                    else {
-
-                        angle = angle + 360;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }                            
-
-                    }
-
-                } else if (head > 0) {
-
-                    if (yaw_angle > -180 && yaw_angle < -90) {
-
-                        angle = angle - 360;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-
-                    } else {
-
-                        angle = angle;
-
-                        if (angle > 180) {
-
-                            angle = angle - 360;
-                        }
-
-                    }
-
-                }
 
             score = distanceValue;
 
