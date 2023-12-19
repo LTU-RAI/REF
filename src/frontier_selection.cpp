@@ -32,13 +32,13 @@ FrontierSelection::FrontierSelection(ros::NodeHandle private_nh_)
 
         m_frontierVisPub = m_nh.advertise<visualization_msgs::MarkerArray>("/local_frontiers", 1, true);
         m_frontierPub = m_nh.advertise<geometry_msgs::Point>("/frontier/point", 1, true);
-        m_pub_frontier = m_nh.advertise<exploration::Frontier>("/cmd_frontier", 1, true);
+        m_pub_frontier = m_nh.advertise<ref::Frontier>("/cmd_frontier", 1, true);
         m_frontierPubPose = m_nh.advertise<geometry_msgs::PoseStamped>("/frontier/pose", 1, true);
         stopPub = m_nh.advertise<std_msgs::String>("/command", 1, true);
 
 
         //Register to the subscribers to topic
-        m_frontierSubscriber = new message_filters::Subscriber<exploration::Frontiers> (m_nh, m_frontierTopic, 5);
+        m_frontierSubscriber = new message_filters::Subscriber<ref::Frontiers> (m_nh, m_frontierTopic, 5);
         m_poseSubscriber = new message_filters::Subscriber<nav_msgs::Odometry> (m_nh, "/hummingbird/ground_truth/odometry", 5);
 
         //Register subscribers to callback functions
@@ -61,7 +61,7 @@ FrontierSelection::FrontierSelection(ros::NodeHandle private_nh_)
     }
 
 
-    void FrontierSelection::handleInput(const exploration::Frontiers::ConstPtr& markers) {
+    void FrontierSelection::handleInput(const ref::Frontiers::ConstPtr& markers) {
         std::list<geometry_msgs::Point> local;
         std::list<geometry_msgs::Point> global;
         std::list<geometry_msgs::Point> seg1;

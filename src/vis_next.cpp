@@ -1,5 +1,5 @@
 #include <ros/ros.h>
-#include <exploration/Frontier.h>
+#include <ref/Frontier.h>
 #include <geometry_msgs/Point.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <visualization_msgs/Marker.h>

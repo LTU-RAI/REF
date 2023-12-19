@@ -6,8 +6,8 @@
 #include <ros/console.h>
 #include <message_filters/subscriber.h>
 #include <mav_msgs/default_topics.h>
-#include <exploration/Frontiers.h>
-#include <exploration/Frontier.h>
+#include <ref/Frontiers.h>
+#include <ref/Frontier.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Point.h>
@@ -27,8 +27,8 @@ class FrontierSelection {
         octomath::Vector3 m_directionVector;
         nav_msgs::Odometry m_currentPose;
         nav_msgs::Odometry m_prevPose; //Holds the point where the direction changed.
-        exploration::Frontier aka;
-        exploration::Frontier aka_g;
+        ref::Frontier aka;
+        ref::Frontier aka_g;
         octomap::point3d frontierPoint;
 	geometry_msgs::Point minFrontier;
         geometry_msgs::Point minPoint;
@@ -69,7 +69,7 @@ class FrontierSelection {
         
 
         //Functions
-        virtual void handleInput(const exploration::Frontiers::ConstPtr& markers);
+        virtual void handleInput(const ref::Frontiers::ConstPtr& markers);
         virtual void updateCurrentPosition(const nav_msgs::Odometry::ConstPtr& pos);
         // virtual float calculateAngle(octomath::Vector3 vector1, octomath::Vector3 vector2);
         virtual void publishFrontier(visualization_msgs::MarkerArray frontierVis);
@@ -79,7 +79,7 @@ class FrontierSelection {
         virtual geometry_msgs::Point weightLocalFrontier(std::list<geometry_msgs::Point> frontiers);
         virtual double calculateDistance(octomap::point3d origin, octomap::point3d point);
         //Subscribers
-        message_filters::Subscriber<exploration::Frontiers>* m_frontierSubscriber;
+        message_filters::Subscriber<ref::Frontiers>* m_frontierSubscriber;
         message_filters::Subscriber<nav_msgs::Odometry>* m_poseSubscriber; //Subscribes to the pose of the quadcopter
 
 

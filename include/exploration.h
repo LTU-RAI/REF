@@ -5,7 +5,7 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <message_filters/subscriber.h>
 #include <std_msgs/ColorRGBA.h>
-#include "exploration/Frontiers.h"
+#include "ref/Frontiers.h"
 #include <tf/transform_listener.h>
 #include <tf/message_filter.h>
 
