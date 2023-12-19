@@ -94,7 +94,7 @@ FrontierExploration::FrontierExploration(ros::NodeHandle private_nh_)
 
     //Register publishers
     m_frontierPub = m_nh.advertise<visualization_msgs::MarkerArray>("/frontier_nodes", 1, true);
-    m_frontierSelectionPub = m_nh.advertise<ref::Frontiers>("frontiers", 1, true);
+    m_frontierSelectionPub = m_nh.advertise<exploration::Frontiers>("frontiers", 1, true);
     m_occupiedPub = m_nh.advertise<visualization_msgs::MarkerArray>("/occupied_nodes", 1, true);
 };
 
@@ -286,7 +286,7 @@ void FrontierExploration::publishFrontiers(const tf::Point& sensorOriginTf, cons
     point3d sensorOrigin = octomap::pointTfToOctomap(sensorOriginTf);
 
     visualization_msgs::MarkerArray frontierVis;
-    ref::Frontiers frontierPoints;
+    exploration::Frontiers frontierPoints;
 
     frontierVis.markers.resize(m_octree->numChangesDetected()+frontierPointList.size()+1);
 

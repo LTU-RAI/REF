@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 cmake_policy(SET CMP0048 NEW)
-project(ref)
+project(exploration)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(octomap_DIR "/opt/ros/noetic/share/octomap")

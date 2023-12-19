@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>ref</name>
+  <name>exploration</name>
   <version>0.0.0</version>
   <description>REF: Rapid Exploration Framework</description>
 
@@ -23,7 +23,6 @@
   <build_depend>visualization_msgs</build_depend>
   <build_depend>octomap_msgs</build_depend>
   <build_depend>octomap_ros</build_depend>
-  <build_depend>pcl_ros</build_depend>
   <build_depend>eigen_catkin</build_depend>
   <build_depend>move_base_msgs</build_depend>
   <build_depend>actionlib</build_depend>
