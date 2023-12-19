@@ -1,3 +1,3 @@
-# 3D Rapid Frontier Exploration
+# Rapid Exploration Framework [REF]
 
-TODO: Add detailed instructions. 
+
