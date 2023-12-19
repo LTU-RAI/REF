@@ -28,9 +28,9 @@ endif()
 
 find_package(catkin REQUIRED COMPONENTS
   nlopt
-  ewok_optimization
-  ewok_poly_spline
-  ewok_ring_buffer
+  # ewok_optimization
+  # ewok_poly_spline
+  # ewok_ring_buffer
   geometry_msgs
   octomap_msgs
   octomap_ros
@@ -79,7 +79,7 @@ include_directories(
    src/exploration.cpp
    src/frontier_selection.cpp
    src/vis_next.cpp
-   src/exploration_cmd.cpp
+   # src/exploration_cmd.cpp
  )
 
 
@@ -107,11 +107,11 @@ add_executable(exploration_node src/exploration_node.cpp)
    ${PCL_LIBRARIES}
  )
 add_dependencies(frontier_selection_node ${catkin_EXPORTED_TARGETS} my_package_generate_messages_cpp)
-add_executable(exploration_cmd_node src/exploration_cmd_node.cpp)
-target_link_libraries(
-  exploration_cmd_node
-  ${CHOLMOD_LIBRARY}
-  ${catkin_LIBRARIES}
-  ${OCTOMAP_LIBRARIES}
-  ${NLOPT_LIBRARIES}
-)
+# add_executable(exploration_cmd_node src/exploration_cmd_node.cpp)
+# target_link_libraries(
+#   exploration_cmd_node
+#   ${CHOLMOD_LIBRARY}
+#   ${catkin_LIBRARIES}
+#   ${OCTOMAP_LIBRARIES}
+#   ${NLOPT_LIBRARIES}
+# )

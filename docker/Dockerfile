@@ -20,6 +20,7 @@ RUN set -x \
 	&& apt-get --with-new-pkgs upgrade -y \
 	&& apt-get install -y mesa-utils \
   && apt-get install -y vim \
+  && apt-get install -y tmuxinator \
   && apt-get install -y python3-catkin-tools \
   && apt-get install -y python3-osrf-pycommon \
   && apt-get install -y ros-noetic-octomap-server \
@@ -82,35 +83,38 @@ RUN rosdep update \
 
 # Adding the ardrone
 RUN mkdir -p catkin_ws/src 
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws; catkin init'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws; catkin config --extend /opt/ros/noetic'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws; catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin init'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin config --extend /opt/ros/noetic'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release'
 
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_checks.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/aakapatel/rotors_simulator.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/darpa_subt_worlds.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/catkin/catkin_simple.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_catkin.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ntnu-arl/lidar_simulator.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ethz-asl/mav_comm.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ros-planning/navigation_msgs.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ethz-asl/numpy_eigen.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ros-perception/perception_pcl.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/ros/xacro.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/jhu-asco/dsl.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src/dsl; git checkout 61cf588668309e87de209cd95f03a0f792a16c33; mkdir build'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src/dsl/build; cmake -DCMAKE_BUILD_TYPE=Release ..'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src/dsl/build; sudo make install'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/Dsp.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_checks.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/aakapatel/rotors_simulator.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/darpa_subt_worlds.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/catkin/catkin_simple.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_catkin.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ntnu-arl/lidar_simulator.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/mav_comm.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ros-planning/navigation_msgs.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/numpy_eigen.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ros-perception/perception_pcl.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ros/xacro.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/jhu-asco/dsl.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl; git checkout 61cf588668309e87de209cd95f03a0f792a16c33; mkdir build'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl/build; cmake -DCMAKE_BUILD_TYPE=Release ..'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl/build; sudo make install'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/Dsp.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/catkin_boost_python_buildtool.git'
 
 
 
 
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin build'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin build'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin build'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin build'
+
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build rotors_simulator'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build dsp'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build perception_pcl'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build pcl_conversions'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build ref'
 
 
 

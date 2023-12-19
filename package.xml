@@ -28,8 +28,8 @@
   <build_depend>move_base_msgs</build_depend>
   <build_depend>actionlib</build_depend>
   <build_depend>message_generation</build_depend>
-  <build_depend>ewok_optimization</build_depend>
-  <exec_depend>ewok_optimization</exec_depend>
+  <!-- <build_depend>ewok_optimization</build_depend> -->
+  <!-- <exec_depend>ewok_optimization</exec_depend> -->
   <exec_depend>mav_msgs</exec_depend>
   <exec_depend>mav_planning_msgs</exec_depend>
   <exec_depend>move_base_msgs</exec_depend>
