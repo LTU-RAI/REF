@@ -109,13 +109,13 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build rotors_simulator'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build dsp'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build perception_pcl'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build pcl_conversions'
 
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; git pull'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; git checkout docker'
+
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build exploration'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build'
+
 RUN echo "source /home/user/catkin_ws/devel/setup.bash --extend" >> /home/user/.bashrc
 
 STOPSIGNAL SIGTERM
