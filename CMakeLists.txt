@@ -27,7 +27,7 @@ endif()
 
 
 find_package(catkin REQUIRED COMPONENTS
-  nlopt
+  #nlopt
   # ewok_optimization
   # ewok_poly_spline
   # ewok_ring_buffer
