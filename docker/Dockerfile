@@ -19,20 +19,20 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get --with-new-pkgs upgrade -y \
 	&& apt-get install -y mesa-utils \
-  && apt install vim \
-  && apt install python3-catkin-tools \
-  && apt install python3-osrf-pycommon \
-  && apt install ros-noetic-octomap-server \
-  && apt install ros-noetic-octomap=ros \
-  && apt install ros-noetic-octomap-rviz-plugins \
-  && apt install ros-noetic-octomap-mapping \
-  && apt install libtool \
-  && apt install libgoogle-glog-dev \
-  && apt install libnlopt-dev \
-  && apt install libsuitesparse-dev \
-  && apt install ros-noetic-nlopt \
-  && apt install liblapacke-dev \
-  && apt install ros-noetic-gtsam \
+  && apt-get install -y vim \
+  && apt-get install -y python3-catkin-tools \
+  && apt-get install -y python3-osrf-pycommon \
+  && apt-get install -y ros-noetic-octomap-server \
+  && apt-get install -y ros-noetic-octomap-ros \
+  && apt-get install -y ros-noetic-octomap-rviz-plugins \
+  && apt-get install -y ros-noetic-octomap-mapping \
+  && apt-get install -y libtool \
+  && apt-get install -y libgoogle-glog-dev \
+  && apt-get install -y libnlopt-dev \
+  && apt-get install -y libsuitesparse-dev \
+  && apt-get install -y ros-noetic-nlopt \
+  && apt-get install -y liblapacke-dev \
+  && apt-get install -y ros-noetic-gtsam \
 	&& apt-get install -y iputils-ping \
 	&& apt-get install -y apt-transport-https ca-certificates \
 	&& apt-get install -y openssh-server python3-pip exuberant-ctags \
