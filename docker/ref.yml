@@ -1,0 +1,51 @@
+# ~/.tmuxinator/ref.yml 
+
+name: ref
+root: ~/
+windows:
+  - ref_main:
+      layout: tiled 
+      panes:
+        - frontiers_exploration:
+          - cd catkin_ws
+          - source devel/setup.bash
+          - sleep 5
+          - roslaunch exploration frontier_exploration.launch
+
+        - DSP_planner:
+          - cd catkin_ws
+          - source devel/setup.bash
+          - sleep 5
+          - roslaunch exploration dsp_grid3d_gazebo.launch
+
+        - mission_script:  
+          - cd catkin_ws
+          - source devel/setup.bash
+          - cd src/REF/mission_scripts
+          - sleep 6
+          - python3 explore.py
+
+        - rviz:  
+          - cd catkin_ws
+          - source devel/setup.bash
+          - cd src/REF/rviz
+          - sleep 6
+          - rviz -d ref.rviz
+
+  - simulator:
+      layout: tiled 
+      panes:
+        - Rotors simulator:
+          - cd catkin_ws
+          - source devel/setup.bash
+          - sleep 5
+          - roslaunch rotors_gazebo custom_drone.launch 
+
+        - controller:  
+          - cd catkin_ws
+          - source devel/setup.bash
+          - sleep 5
+          - roslaunch mav_linear_mpc mav_linear_mpc_sim.launch mav_name:=hummingbird
+
+        - roscore: 
+          - roscore 

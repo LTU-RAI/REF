@@ -92,23 +92,22 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl/
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl/build; sudo make install'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/Dsp.git'
 
-
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build rotors_simulator'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build dsp'
-
-
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
-
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/darpa_subt_worlds.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/darpa_subt_worlds; git pull'
+
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; git clone https://github.com/aakapatel/mav_control_rw.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; git pull'
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build exploration'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build'
 
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; mkdir /home/user/.config/tmuxinator'
 RUN git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack  \
         && git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux-resurrect
 COPY --chown=user:user ./.tmux.conf /home/user/.tmux.conf
 COPY --chown=user:user ./.powerline.sh /home/user/.powerline.sh
+COPY --chown=user:user ./ref.yml /home/user/.config/tmuxinator/ref.yml
 
 #
 # Set some decent colors if the container needs to be accessed via /bin/bash.
