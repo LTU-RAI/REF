@@ -63,19 +63,6 @@ USER user
 WORKDIR /home/user
 RUN sudo usermod -a -G video user
 
-RUN git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack  \
-        && git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux-resurrect
-#COPY --chown=user:user ./.tmux.conf /home/user/.tmux.conf
-#COPY --chown=user:user ./.powerline.sh /home/user/.powerline.sh
-
-#
-# Set some decent colors if the container needs to be accessed via /bin/bash.
-RUN echo LS_COLORS=$LS_COLORS:\'di=1\;33:ln=36\' >> ~/.bashrc \
-        && echo export LS_COLORS >> ~/.bashrc \
-        && echo 'source ~/.powerline.sh' >> ~/.bashrc \
-        && echo 'alias tmux="tmux -2"' >> ~/.bashrc \
-        && echo 'PATH=~/bin:$PATH' >> ~/.bashrc \
-        && touch ~/.sudo_as_admin_successful # To surpress the sudo message at run.
 
 RUN rosdep update \
         && echo "source /opt/ros/noetic/setup.bash" >> /home/user/.bashrc
@@ -89,7 +76,6 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin 
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_checks.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/aakapatel/rotors_simulator.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/darpa_subt_worlds.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/catkin/catkin_simple.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_catkin.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ntnu-arl/lidar_simulator.git'
@@ -113,9 +99,25 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
 
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/darpa_subt_worlds.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/darpa_subt_worlds; git pull'
+
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build exploration'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/; catkin build'
 
+RUN git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack  \
+        && git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux-resurrect
+COPY --chown=user:user ./.tmux.conf /home/user/.tmux.conf
+COPY --chown=user:user ./.powerline.sh /home/user/.powerline.sh
+
+#
+# Set some decent colors if the container needs to be accessed via /bin/bash.
+RUN echo LS_COLORS=$LS_COLORS:\'di=1\;33:ln=36\' >> ~/.bashrc \
+        && echo export LS_COLORS >> ~/.bashrc \
+        && echo 'source ~/.powerline.sh' >> ~/.bashrc \
+        && echo 'alias tmux="tmux -2"' >> ~/.bashrc \
+        && echo 'PATH=~/bin:$PATH' >> ~/.bashrc \
+        && touch ~/.sudo_as_admin_successful # To surpress the sudo message at run.
 RUN echo "source /home/user/catkin_ws/devel/setup.bash --extend" >> /home/user/.bashrc
 
 STOPSIGNAL SIGTERM
