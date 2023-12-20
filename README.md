@@ -63,7 +63,7 @@ If you do not have NVIDIA GPU :
   docker run -it --net=host  --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" REF:latest
 ```
 Once you are inside the docker container, please run the following command to start the REF tmux session.
-This session will launch the REF submodules and a Rviz window to visualize the drone exploring the cave environment. 
+This session will launch the REF sub-modules and a Rviz window to visualize the drone exploring the cave environment. 
 
 ```bash
 tmuxinator ref
