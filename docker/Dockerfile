@@ -75,7 +75,6 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release'
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_checks.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/aakapatel/rotors_simulator.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/catkin/catkin_simple.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ethz-asl/eigen_catkin.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/ntnu-arl/lidar_simulator.git'
@@ -95,7 +94,11 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/darpa_subt_worlds.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/darpa_subt_worlds; git pull'
 
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; git clone https://github.com/aakapatel/mav_control_rw.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/aakapatel/rotors_simulator.git'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/rotors_simulator; git pull'
+
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; rm -rf mav_control_rw'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/aakapatel/mav_control_rw.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; git pull'
 
