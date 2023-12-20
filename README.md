@@ -44,7 +44,7 @@ Go to the REF directory
   cd ~/REF/docker
 ```
 
-Build the docker image
+Build the docker image with following command. The build process might take some time when building for first time. 
 
 ```bash
   docker build -t REF .
