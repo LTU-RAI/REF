@@ -1,6 +1,7 @@
 # Rapid Exploration Framework [REF]
 
 The REF repository allows the user to test the exploration-planning framework in virtual subterranean cave environment. 
+
 ![swag](Images/void.jpeg)
 ##
 
