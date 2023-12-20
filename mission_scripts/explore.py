@@ -12,10 +12,11 @@ from geometry_msgs.msg import PoseStamped
 from exploration.msg import Frontier
 import time
 import subprocess
-
+import tf 
+from tf.transformations import quaternion_from_euler
 import math
 
-WP_SIZE = 1
+WP_SIZE = 0.5
 
 return_flag = 0
 m = 0
@@ -107,14 +108,14 @@ class Server:
         header.frame_id = 'world'
 
         self.heading_ref = math.atan2((self.y_r - self.y_c), (self.x_r - self.x_c))
-
+        
         self.vel_msg.pose.position.x = self.x_r
         self.vel_msg.pose.position.y = self.y_r
         self.vel_msg.pose.position.z = self.z_r
         self.vel_msg.pose.orientation.x = 0
-        self.vel_msg.pose.orientation.y = 0
-        self.vel_msg.pose.orientation.z = 0
-        self.vel_msg.pose.orientation.w = 0
+        self.vel_msg.pose.orientation.y = 0 
+        self.vel_msg.pose.orientation.z = quaternion_from_euler(0, 0, self.heading_ref)[2]
+        self.vel_msg.pose.orientation.w = quaternion_from_euler(0, 0, self.heading_ref)[3]
 
         self.vel_publisher.publish(self.vel_msg)
         print('exploring....')

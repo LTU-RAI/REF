@@ -1,4 +1,6 @@
+<?xml version="1.0"?>
 <launch>
+
 
 	<node pkg="exploration" type="vis_next" name="vis_next" output="screen"> </node>
     <node pkg="exploration" type="exploration_node" name="exploration" output="screen">
@@ -9,12 +11,12 @@
 		<param name="resolution" value="0.4" />
 		<param name="cloud_in" value="/hummingbird/velodyne_points" />
 		
-		<param name="distance" value="10" />  <!-- Frontiers clearing radius -->
+		<param name="distance" value="8" />  <!-- Frontiers clearing radius -->
 
 		<param name="frame_id" type="string" value="world" />
 
 		
-		<param name="sensor_model/max_range" value="12" />  <!-- maximum range to integrate (speedup exploration!) -->
+		<param name="sensor_model/max_range" value="10" />  <!-- maximum range to integrate (speedup exploration!) -->
 
 		<remap from="cloud_in" to="/hummingbird/velodyne_points" /> <!-- data source to integrate (PointCloud2) -->
 
@@ -37,28 +39,12 @@
 
         <param name="frontier_topic" value="frontiers" />
 
-		<param name="sensor_range" value="13" />
+		<param name="sensor_range" value="14" />
 
 		<param name="frame_id" type="string" value="world" />
 
 	</node>
 
-	<!-- <node pkg="exploration" type="exploration_cmd_node" name="exploration_cmd" output="screen">
-
-        <param name="point_cloud_topic" value="/hummingbird/velodyne_points" />
-		<param name="odom_topic" value="/hummingbird/ground_truth/odometry"/>
-		<param name="publish_point_topic" value="/command/point"/>
-        <param name="max_velocity" value="1.5"/>
-        <param name="max_acceleration" value="2.5"/>
-        <param name="resolution" value="0.3"/>
-        <param name="distance_threshold" value="0.5"/>
-        <param name="distanceBeforeSelectingNew" value="20"/>
-        <param name="dt" value="0.5"/>
-        <param name="num_opt_points" value="4"/>
-        <param name="field" value="15"/>
-        <param name="stopTimeGlobalFrontier" value="2.5"/>
-
-	</node> -->
 
     
 </launch>
