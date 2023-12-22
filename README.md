@@ -3,11 +3,12 @@
 The REF repository allows the user to test the exploration-planning framework in virtual subterranean cave environment. 
 
 ![swag](Images/void.jpeg)
+
 ##
 
 ## Requirements
 
-The REF repository only requires docker. If you do not have docker installed, please follow the docker installation instructions. If you already have docker, you can skip this step.
+The REF repository only requires docker. If you do not have docker installed, please follow the docker installation instructions. If you already have docker installed, you can skip this step.
 
 ```bash
 # Add Docker's official GPG key:
@@ -29,7 +30,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 ```
     
-## Run Locally
+## Test REF in a docker container
 The repository contains a Dockerfile that allows the user to build a docker image containing packages for exploration, planning, control and simulation environment. 
 
 Clone the REF project
@@ -42,7 +43,7 @@ Clone the REF project
 Go to the REF directory
 
 ```bash
-  cd ~/REF/docker
+  cd REF/docker
 ```
 
 Build the docker image with following command. The build process might take some time when building for first time. 
@@ -108,6 +109,7 @@ If you find the global planner useful in your research, please consider citing t
 
 ## Support
 
-If you have any question please feel free to raise an issue or send an email to akash.patel@ltu.se. Thank you. 
+If you have any question please feel free to raise an issue or send an email to akash.patel@ltu.se. 
+Thank you for your interest in our work. 
 
 

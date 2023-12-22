@@ -3,7 +3,7 @@ FROM osrf/ros:noetic-desktop-full-focal
 # Therefore, the following commands are executed as root up until the
 # USER user statement.
 
-# We love UTF!
+# We love UTF :) 
 ENV LANG C.UTF-8
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -58,7 +58,6 @@ RUN set -x \
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 
-
 USER user
 WORKDIR /home/user
 RUN sudo usermod -a -G video user
@@ -68,7 +67,8 @@ RUN rosdep update \
         && echo "source /opt/ros/noetic/setup.bash" >> /home/user/.bashrc
 
 
-# Adding the ardrone
+# Clone the necessary packages for simulation. 
+#
 RUN mkdir -p catkin_ws/src 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin init'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws; catkin config --extend /opt/ros/noetic'
@@ -89,16 +89,19 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl; git checkout 61cf588668309e87de209cd95f03a0f792a16c33; mkdir build'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl/build; cmake -DCMAKE_BUILD_TYPE=Release ..'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/dsl/build; sudo make install'
+
+# DSP - Risk aware global path planner from LTU_RAI 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/Dsp.git'
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/darpa_subt_worlds.git'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/darpa_subt_worlds; git pull'
 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/aakapatel/rotors_simulator.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/rotors_simulator; git pull'
 
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; rm -rf mav_control_rw'
+# Controller for MAVs from ethz-asl
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/aakapatel/mav_control_rw.git'
+
+#Exploration package 
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src; git clone https://github.com/LTU-RAI/REF.git'
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/catkin_ws/src/REF; git pull'
 
